@@ -55,27 +55,19 @@ function ($scope, $routeParams, $route, dialogService, $timeout,  notificationsS
                     vm.isLoading = false;
 
                     if (!isButtonStateInitial()) {
-                        vm.buttonState = 'success';
-                        resetButtonState();
+                        vm.buttonState = 'init';
                     }
                 }, function (response) {
                     notificationsService.error("Error", "Could not load audit log data.");
 
                     if (!isButtonStateInitial()) {
-                        vm.buttonState ='error';
-                        resetButtonState();
+                        vm.buttonState ='init';
                     }
                 });
         }
 
         function isButtonStateInitial() {
             return vm.buttonState === 'init';
-        }
-
-        function resetButtonState() {
-            $timeout(function () {
-                vm.buttonState = 'init';
-            }, 250);
         }
 
         // Get the event types list for the dropdown list filter
